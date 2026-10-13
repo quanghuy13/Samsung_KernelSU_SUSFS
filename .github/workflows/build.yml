@@ -55,6 +55,7 @@ on:
 jobs:
   build-samsung-gki:
     name: "${{ inputs.branch }}"
+    if: inputs.branch == 'SM-F946N-Oneui7'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
