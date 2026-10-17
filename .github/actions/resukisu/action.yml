@@ -12,7 +12,7 @@ runs:
       shell: bash
       run: |
         cd "$COMMON"
-        curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash -s main
+        curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash -s v4.2.0-rc2
 
     - name: enable in defconfig
       shell: bash
