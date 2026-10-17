@@ -205,7 +205,7 @@ jobs:
 
       - name: Add KernelSU-Next
         if: inputs.ksun == 'true'
-        uses: ./.github/actions/ksun
+        uses: ./.github/actions/resukisu
         with:
           susfs: ${{ inputs.susfs }}
         
