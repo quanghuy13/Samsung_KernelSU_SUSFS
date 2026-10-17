@@ -31,3 +31,12 @@ runs:
         echo "KSU_COMMIT=$KSU_COMMIT" >> $GITHUB_ENV
         echo "KSU_VERSION=$KSU_VERSION" >> $GITHUB_ENV
         echo "KSU_GIT_TAG=resukisu" >> $GITHUB_ENV
+    - name: Fix KSU_SRC for bazel
+      shell: bash
+      run: |
+        cd "$COMMON"
+        KDIR=$(readlink -f drivers/kernelsu)
+        echo "drivers/kernelsu -> $KDIR"
+        ls -la drivers | grep -i kernelsu || true
+        sed -n '55,80p' "$KDIR/Kbuild" || true
+        sed -i "1i override KSU_SRC := $KDIR" "$KDIR/Kbuild"
