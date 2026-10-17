@@ -57,7 +57,7 @@ runs:
      "$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KDP
      "$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KDP_NS
      #"$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KNOX
-     #"$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KNOX_NCM
+     "$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KNOX_NCM
      #"$COMMON/scripts/config" --file "$target_config" --disable CONFIG_KNOX_KAP
      fi
 

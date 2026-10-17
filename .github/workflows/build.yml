@@ -253,10 +253,6 @@ jobs:
         if: ${{ env.KERNEL_VER == '6.6' }}
         uses: ./.github/actions/6.6-fix
 
-      - name: temp fix for m55 bootloop maybe
-        if: inputs.branch == 'SM-M556B-Oneui8'
-        uses: ./.github/actions/m55-fix
-
       - name: Set Kernel Configuration Variables
         if: inputs.ksun == 'true'
         uses: ./.github/actions/configs
@@ -268,7 +264,6 @@ jobs:
         uses: ./.github/actions/abi-export
         
       - name: Set file name
-        if: inputs.ksun == 'true'
         uses: ./.github/actions/file-name
         with:
          ksun: ${{ inputs.ksun }}

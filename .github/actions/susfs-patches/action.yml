@@ -12,7 +12,7 @@ runs:
      shell: bash
      run: |
       SUSFS_BRANCH="gki-$ANDROID_VER-$KERNEL_VER"
-      git clone https://gitlab.com/simonpunk/susfs4ksu.git -b "$SUSFS_BRANCH"
+       git clone --depth 1 -b "$SUSFS_BRANCH" --single-branch https://gitlab.com/simonpunk/susfs4ksu.git
 
       git config --global user.name "github-actions[bot]"
       git config --global user.email "41898282+github-actions[bot]@://github.com"
