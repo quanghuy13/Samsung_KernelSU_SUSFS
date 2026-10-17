@@ -1,0 +1,33 @@
+name: Set up ReSukiSU
+description: download and set up ReSukiSU into the kernel source
+inputs:
+ susfs:
+  description: 'susfs'
+  required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup ReSukiSU
+      shell: bash
+      run: |
+        cd "$COMMON"
+        curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash -s main
+
+    - name: enable in defconfig
+      shell: bash
+      run: |
+        "$COMMON/scripts/config" --file "$GKI_DEFCONFIG" --enable CONFIG_KSU
+
+    - name: Record version info
+      shell: bash
+      continue-on-error: true
+      run: |
+        cd "$COMMON"
+        D=$(ls -d ReSukiSU* KernelSU* 2>/dev/null | head -n1)
+        cd "$D"
+        KSU_COMMIT=$(git rev-parse --short HEAD 2>/dev/null || echo unknown)
+        KSU_VERSION=$((30000 + $(git rev-list --count HEAD 2>/dev/null || echo 0)))
+        echo "KSU_COMMIT=$KSU_COMMIT" >> $GITHUB_ENV
+        echo "KSU_VERSION=$KSU_VERSION" >> $GITHUB_ENV
+        echo "KSU_GIT_TAG=resukisu" >> $GITHUB_ENV
